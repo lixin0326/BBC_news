@@ -24,9 +24,11 @@ class ClassifyApi(Resource):
         news_list_count = News.query.filter(News.c_id == c_id).count()
         news_list = News.query.filter(News.c_id == c_id).limit(5).offset(0).all()
         data = {
-            'news': {
+            'news_count': {
                 'news_list_count': news_list_count,
-                'news_list': news_list,
+            },
+            'news': {
+                'title': news_list,
             },
 
         }
