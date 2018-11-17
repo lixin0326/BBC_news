@@ -1,3 +1,4 @@
+from flask import Flask
 from flask_restful import Resource
 
 from apps.home.models import User
