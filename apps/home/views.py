@@ -7,3 +7,8 @@ home = Blueprint('home', __name__)
 @home.route('/')
 def index():
     return render_template('index.html')
+
+#   分类
+@home.route('/cart')
+def cart():
+    return render_template('cart.html')
