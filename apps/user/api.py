@@ -37,13 +37,12 @@ class AccountApi(Resource):
             user.username = username
             user.password = password
             user.email = email
-            user.phone = '15737628530'
             db.session.add(user)
             # db.session.commit() 在ext中设置了自动提交
             # 邮箱激活  页面
             html = render_template('mail.html')
-            msg = Message(subject='激活账号邮件', body='全球最帅男子', sender='lx_12306@sina.com',
-                          recipients=['2515081937@qq.com', ])
+            msg = Message(subject='激活账号邮件', body='全球最帅男子', sender='L15737628530@163.com',
+                          recipients=['L18736262608@163.com', ])
             mail.send(msg)
             return 'success'
         else:

@@ -10,9 +10,9 @@ from flask_sqlalchemy import SQLAlchemy
 # 　入口函数
 def init_ext(app):
     init_db(app)
-    # init_cors(app)
-    # init_login(app)
-    # init_mail(app)
+    init_cors(app)
+    init_login(app)
+    init_mail(app)
 
 
 # ========数据库配置============
@@ -38,11 +38,11 @@ def config_db(app):
     PERMANENT_SESSION_LIFETIME = datetime.timedelta(days=7)
     MAIL_DEBUG = True
     # smtp.163.com
-    MAIL_SERVER = 'smtp.qq.com'
+    MAIL_SERVER = 'smtp.163.com'
     MAIL_PORT = 465
     MAIL_USE_SSL = True
-    MAIL_USERNAME = '36558563@qq.com'
-    MAIL_PASSWORD = 'ykvkjhkkrcpycagh'
+    MAIL_USERNAME = 'L15737628530@163.com'
+    MAIL_PASSWORD = 'lixin123'
 
 
 # ========数据库配置ending========
