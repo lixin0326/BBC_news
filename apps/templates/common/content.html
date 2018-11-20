@@ -14,14 +14,18 @@
                     <!-- 轮播图 -->
                     <div id="home_slider" class="flexslider">
                         <ul class="slides">
-                            <li>
-                                <!-- 模板-->
-                                <div class="slide">
-                                    <img src="" alt=""/>
-                                    <div class="caption">
+
+                            <!-- 模板-->
+                            {% for banner in banners_list %}
+                                <li>
+                                    <div class="slide">
+                                        <img src="{{ banner.image_url }}" alt=""/>
+                                        <div class="caption">
+                                        </div>
                                     </div>
-                                </div>
-                            </li>
+                                </li>
+                            {% endfor %}
+
                         </ul>
                     </div>
 
@@ -46,52 +50,56 @@
                 <div class="block_home_col_1">
 
                     {#            模板  有三条新闻#}
-                    <div class="block_home_post">
-                        <div class="pic">
-                            <a href="#" class="w_hover">
-                                <img src="#" alt=""/>
-                                <span></span>
-                            </a>
-                        </div>
+                    {% for new in news_left %}
+                        <div class="block_home_post">
+                            <div class="pic">
+                                <a href="#" class="w_hover">
+                                    <img src="{{ new.image_url }}" alt="" style="width: 64px;height: 45px"/>
+                                    <span></span>
+                                </a>
+                            </div>
 
-                        <div class="text">
-                            <p class="title"><a href="#">There are many variations of of available, but
-                                the majority.</a></p>
-                            <div class="date"><p>11 July, 2012</p></div>
-                            <div class="icons">
-                                <ul>
-                                    <li><a href="#" class="views">56</a></li>
-                                </ul>
+                            <div class="text">
+                                <p class="title"><a href="#">{{ new.title }}</a></p>
+                                <div class="date"><p>{{ new.news_date }}</p></div>
+                                <div class="icons">
+                                    <ul>
+                                        <li><a href="#" class="views">{{ new.view_count }}</a></li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="line_3" style="margin:14px 0px 17px;"></div>
+                        <div class="line_3" style="margin:14px 0px 17px;"></div>
+                    {% endfor %}
+
 
                 </div>
                 <!-- 轮播图下 右边新闻-->
                 <div class="block_home_col_2">
                     <div class="line_3 first" style="margin:14px 0px 17px;"></div>
                     {#            模板  有三条新闻#}
-                    <div class="block_home_post">
-                        <div class="pic">
-                            <a href="#" class="w_hover">
-                                <img src="" alt=""/>
-                                <span></span>
-                            </a>
-                        </div>
+                    {% for new in news_right %}
+                        <div class="block_home_post">
+                            <div class="pic">
+                                <a href="#" class="w_hover">
+                                    <img src="{{ new.image_url }}" alt="" style="width: 64px;height: 45px"/>
+                                    <span></span>
+                                </a>
+                            </div>
 
-                        <div class="text">
-                            <p class="title"><a href="#">Many variations of of available, but the
-                                majority.</a></p>
-                            <div class="date"><p>11 July, 2012</p></div>
-                            <div class="icons">
-                                <ul>
-                                    <li><a href="#" class="views">56</a></li>
-                                </ul>
+                            <div class="text">
+                                <p class="title"><a href="#">{{ new.title }}</a></p>
+                                <div class="date"><p>{{ new.news_date }}</p></div>
+                                <div class="icons">
+                                    <ul>
+                                        <li><a href="#" class="views">{{ new.view_count }}</a></li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="line_3" style="margin:14px 0px 17px;"></div>
+                        <div class="line_3" style="margin:14px 0px 17px;"></div>
+                    {% endfor %}
+
 
                 </div>
                 <div class="clearboth"></div>
@@ -104,22 +112,23 @@
                 <div class="line_4" style="margin:-4px 0px 18px;"></div>
                 {#            模板  有四条新闻#}
                 <div class="block_topic_news">
-                    <article class="block_topic_post">
-                        <p class="title"><a href="#">Many desktop publishing packages and web page
-                            editors now use.</a></p>
-                        <div class="f_pic"><a href="#" class="general_pic_hover scale"><img
-                                src="" alt=""/></a></div>
-                        <p class="text">There are many variations of passages of available, but the majority have
-                            alteration.</p>
-                        <div class="info">
-                            <div class="date"><p>11 July, 2012</p></div>
+                    {% for new in news %}
+                        <article class="block_topic_post">
+                            <p class="title"><a href="#">{{ new.title }}</a></p>
+                            <div class="f_pic"><a href="#" class="general_pic_hover scale"><img
+                                    src="{{ new.image_url }}" alt=""/></a></div>
+                            <p class="text">There are many variations of passages of available, but the majority have
+                                alteration.</p>
+                            <div class="info">
+                                <div class="date"><p>{{ new.news_date }}</p></div>
 
-                            <div class="r_part">
-                                <div class="category"><p><a href="#">Business</a></p></div>
-                                <a href="#" class="views">183</a>
+                                <div class="r_part">
+                                    <div class="category"><p><a href="#">{{ new.classify_id.c_name }}</a></p></div>
+                                    <a href="#" class="views">{{ new.view_count }}</a>
+                                </div>
                             </div>
-                        </div>
-                    </article>
+                        </article>
+                    {% endfor %}
 
 
                 </div>
@@ -165,27 +174,29 @@
 
                 <div class="block_popular_posts">
                     <h4>热门新闻</h4>
+                    {% for hot_new in hot_news %}
+                        <div class="article">
+                            <div class="pic">
+                                <a href="#" class="w_hover">
+                                    <img src="{{ hot_new.image_url }}" alt="" style="width: 48px;height: 48px"/>
+                                    <span></span>
+                                </a>
+                            </div>
 
-                    <div class="article">
-                        <div class="pic">
-                            <a href="#" class="w_hover">
-                                <img src="" alt=""/>
-                                <span></span>
-                            </a>
-                        </div>
-
-                        <div class="text">
-                            <p class="title"><a href="#">Packages and web page editors their default text.</a></p>
-                            <div class="date"><p>11 July, 2012</p></div>
-                            <div class="icons">
-                                <ul>
-                                    <li><a href="#" class="views">41</a></li>
-                                    <li><a href="#" class="comments">22</a></li>
-                                </ul>
+                            <div class="text">
+                                <p class="title"><a href="#">{{ hot_new.title }}</a></p>
+                                <div class="date"><p>{{ hot_new.news_date }}</p></div>
+                                <div class="icons">
+                                    <ul>
+                                        <li><a href="#" class="views">{{ hot_new.view_count }}</a></li>
+                                        <li><a href="#" class="comments">22</a></li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="line_3"></div>
+                        <div class="line_3"></div>
+                    {% endfor %}
+
 
                 </div>
 

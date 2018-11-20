@@ -2,7 +2,7 @@ from flask import Flask
 from apps.account.views import account
 from apps.db_ext import init_ext
 from apps.home.views import home
-from mail_helper import init_mail
+
 
 
 def create_app():
@@ -15,7 +15,7 @@ def create_app():
 
     init_ext(app)  # 数据库相关 拓展程序
 
-    init_mail(app)  # 邮箱激活
+    # init_mail(app)  # 邮箱激活
 
 
 

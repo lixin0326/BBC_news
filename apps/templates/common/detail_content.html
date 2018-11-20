@@ -18,10 +18,8 @@
                 <div class="block_topic_news">
                     {% for new in news %}
 
-
-
                     <article class="block_topic_post">
-                        <p class="title"><a href="#">{{ new.title }}</a></p>
+                        <p class="title">{{ new.title }}</p>
                         <div class="f_pic"><a href="#" class="general_pic_hover scale"><img
                                 src="{{ new.image_url }}" alt=""/></a></div>
                         <p class="text">{{ new.content }}</p>
@@ -127,7 +125,6 @@
 
 
             </div>
-
             <div class="clearboth"></div>
         </div>
     </div>

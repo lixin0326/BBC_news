@@ -1,30 +1,10 @@
 import datetime
 from functools import wraps
 from flask import Blueprint, request, render_template, session, redirect, url_for
-from sqlalchemy import and_, or_
 from apps.db_ext import db
 from apps.home.models import User
-from mail_helper import send_mail
 
 account = Blueprint('account', __name__)
-
-
-# 登录校验
-def valid_login(username, password):
-    user = User.query.filter(and_(User.username == username, User.password == password))
-    if user:
-        return True
-    else:
-        return False
-
-
-# 注册校验
-def vlaid_register(username, email):
-    user = User.query.filter(or_(User.username == username, User.email == email))
-    if user:
-        return False
-    else:
-        return True
 
 
 # 登录装饰器
@@ -39,7 +19,7 @@ def login_required(func):
     return __wrapper
 
 
-@account.route('/login/', methods=['GET', 'POST'])
+@account.route('/', methods=['GET', 'POST'])
 def login():
     if request.method == 'GET':
         return render_template('index.html')
@@ -78,14 +58,14 @@ def register():
                     create_date=create_date)
         db.session.add(user)
 
-        try:
-            send_mail(user,
-                      'L18736262608@163.com',
-                      'user_active.html',
-                      username=user.username)
-            return '邮件已发送!'
-        except Exception as e:
-            print(e)
+        # try:
+        #     send_mail(user,
+        #               'L18736262608@163.com',
+        #               'user_active.html',
+        #               username=user.username)
+        #     return '邮件已发送!'
+        # except Exception as e:
+        #     print(e)
         return redirect('/')
 
 
