@@ -28,7 +28,7 @@ def init_db(app):
 
 # 配置数据库的参数
 def config_db(app):
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:1234@127.0.0.1:3306/flask_news'
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://admin:admin@192.168.58.64:3306/flask_news'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     # 设置请求结束之后自动提交
     app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = True
