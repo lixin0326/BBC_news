@@ -1,6 +1,7 @@
 # 数据库操作核心对象
 import datetime
 
+from flask import app
 from flask_cors import CORS
 from flask_mail import Mail
 from flask_migrate import Migrate
@@ -11,8 +12,6 @@ from flask_sqlalchemy import SQLAlchemy
 def init_ext(app):
     init_db(app)
     init_cors(app)
-    init_login(app)
-    init_mail(app)
 
 
 # ========数据库配置============
@@ -56,25 +55,25 @@ cors = CORS()
 def init_cors(app):
     cors.init_app(app, resources={r"/api/*": {"origins": "*"}})
 
-
 # =========跨域请求ending=======
 
 
 # ========验证用户登录配置=======
-from flask_login import LoginManager
-
-lm = LoginManager()
-
-
-def init_login(app):
-    lm.login_view = '蓝图对象 登录的视图函数'
-    lm.init_app(app)
-
-
-mail = Mail()
+# from flask_login import LoginManager
+#
+# lm = LoginManager()
+#
+#
+# def init_login(app):
+#     lm.login_view = '蓝图对象 登录的视图函数'
+#     lm.init_app(app)
 
 
-def init_mail(app):
-    mail.init_app(app)
+# mail = Mail()
+
+#
+# def init_mail(app):
+#     mail.init_app(app)
+
 
 # ========用户登录ending==============
