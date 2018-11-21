@@ -5,7 +5,10 @@
                 <!-- 热门 div -->
                 <div class="block_special_topic">
                     <div class="type"><p>热门 主题</p></div>
-                    <div class="title"><p><a href="#">90后的头发去哪里了?</a></p>
+                    <div class="title">
+                        <p>
+                            <a href="http://www.cnblogs.com/hntzjy/p/9359572.html" target="_blank">python的市场占有率?</a>
+                        </p>
                     </div>
                 </div>
                 <div class="separator" style="height:17px;"></div>
@@ -53,26 +56,21 @@
                     {% for new in news_left %}
                         <div class="block_home_post">
                             <div class="pic">
-                                <a href="#" class="w_hover">
+                                <a href="http://127.0.0.1:8000/detail/{{ new.new_id }}" class="w_hover">
                                     <img src="{{ new.image_url }}" alt="" style="width: 64px;height: 45px"/>
                                     <span></span>
                                 </a>
                             </div>
 
                             <div class="text">
-                                <p class="title"><a href="#">{{ new.title }}</a></p>
+                                <p class="title"><a
+                                        href="http://127.0.0.1:8000/detail/{{ new.new_id }}">{{ new.title }}</a></p>
                                 <div class="date"><p>{{ new.news_date }}</p></div>
-                                <div class="icons">
-                                    <ul>
-                                        <li><a href="#" class="views">{{ new.view_count }}</a></li>
-                                    </ul>
-                                </div>
+
                             </div>
                         </div>
                         <div class="line_3" style="margin:14px 0px 17px;"></div>
                     {% endfor %}
-
-
                 </div>
                 <!-- 轮播图下 右边新闻-->
                 <div class="block_home_col_2">
@@ -81,26 +79,20 @@
                     {% for new in news_right %}
                         <div class="block_home_post">
                             <div class="pic">
-                                <a href="#" class="w_hover">
+                                <a href="http://127.0.0.1:8000/detail/{{ new.new_id }}" class="w_hover">
                                     <img src="{{ new.image_url }}" alt="" style="width: 64px;height: 45px"/>
                                     <span></span>
                                 </a>
                             </div>
 
                             <div class="text">
-                                <p class="title"><a href="#">{{ new.title }}</a></p>
+                                <p class="title"><a
+                                        href="http://127.0.0.1:8000/detail/{{ new.new_id }}">{{ new.title }}</a></p>
                                 <div class="date"><p>{{ new.news_date }}</p></div>
-                                <div class="icons">
-                                    <ul>
-                                        <li><a href="#" class="views">{{ new.view_count }}</a></li>
-                                    </ul>
-                                </div>
                             </div>
                         </div>
                         <div class="line_3" style="margin:14px 0px 17px;"></div>
                     {% endfor %}
-
-
                 </div>
                 <div class="clearboth"></div>
 
@@ -114,45 +106,25 @@
                 <div class="block_topic_news">
                     {% for new in news %}
                         <article class="block_topic_post">
-                            <p class="title"><a href="#">{{ new.title }}</a></p>
-                            <div class="f_pic"><a href="#" class="general_pic_hover scale"><img
+                            <p class="title"><a href="http://127.0.0.1:8000/detail/{{ new.new_id }}">{{ new.title }}</a>
+                            </p>
+                            <div class="f_pic"><a href="http://127.0.0.1:8000/detail/{{ new.new_id }}"
+                                                  class="general_pic_hover scale"><img
                                     src="{{ new.image_url }}" alt=""/></a></div>
-                            <p class="text">There are many variations of passages of available, but the majority have
-                                alteration.</p>
                             <div class="info">
                                 <div class="date"><p>{{ new.news_date }}</p></div>
 
                                 <div class="r_part">
-                                    <div class="category"><p><a href="#">{{ new.classify_id.c_name }}</a></p></div>
+                                    <div class="category"><p>浏览量：</p></div>
                                     <a href="#" class="views">{{ new.view_count }}</a>
                                 </div>
                             </div>
                         </article>
                     {% endfor %}
-
-
                 </div>
 
                 <div class="line_3" style="margin:20px 0px 24px;"></div>
 
-                <!--   分页显示 -->
-                <div class="block_pager">
-                    <a href="#" class="prev">上一页</a>
-                    <a href="#" class="next">下一页</a>
-
-                    <div class="pages">
-                        <ul>
-                            <li class="current"><a href="#">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">4</a></li>
-                            <li><a href="#">5</a></li>
-                            <li><a href="#">6</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="clearboth"></div>
-                </div>
 
                 <div class="line_2" style="margin:24px 0px 35px;"></div>
 
@@ -161,14 +133,6 @@
             </div>
 
             <div class="sidebar">
-                <div class="block_subscribes_sidebar">
-                    <div class="service">
-                        <a href="#" class="rss">
-                            <span class="num">11 234</span>
-                            <span class="people">Subscribers</span>
-                        </a>
-                    </div>
-                </div>
 
                 <div class="separator" style="height:31px;"></div>
 
@@ -177,27 +141,25 @@
                     {% for hot_new in hot_news %}
                         <div class="article">
                             <div class="pic">
-                                <a href="#" class="w_hover">
+                                <a href="http://127.0.0.1:8000/detail/{{ hot_new.new_id }}" class="w_hover">
                                     <img src="{{ hot_new.image_url }}" alt="" style="width: 48px;height: 48px"/>
                                     <span></span>
                                 </a>
                             </div>
-
                             <div class="text">
-                                <p class="title"><a href="#">{{ hot_new.title }}</a></p>
+                                <p class="title"><a
+                                        href="http://127.0.0.1:8000/detail/{{ hot_new.new_id }}">{{ hot_new.title }}</a>
+                                </p>
                                 <div class="date"><p>{{ hot_new.news_date }}</p></div>
                                 <div class="icons">
                                     <ul>
                                         <li><a href="#" class="views">{{ hot_new.view_count }}</a></li>
-                                        <li><a href="#" class="comments">22</a></li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
                         <div class="line_3"></div>
                     {% endfor %}
-
-
                 </div>
 
                 <div class="separator" style="height:31px;"></div>

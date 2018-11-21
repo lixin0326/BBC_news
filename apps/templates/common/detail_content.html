@@ -2,37 +2,26 @@
     <div class="inner">
         <div class="general_content">
             <div class="main_content">
-                <!-- 热门 div -->
-                <div class="block_special_topic">
-                    <div class="type"><p>热门 主题</p></div>
-                    <div class="title"><p><a href="#">90后的头发去哪里了?</a></p>
-                    </div>
-                </div>
-                <div class="separator" style="height:17px;"></div>
 
-
-
-                <h3 style="font-size:16px;">全部新闻</h3>
                 <div class="line_4" style="margin:-4px 0px 18px;"></div>
                 {#            模板  有四条新闻#}
-                <div class="block_topic_news">
-                    {% for new in news %}
+                <div class="block_topic_news" style="width: 600px">
 
-                    <article class="block_topic_post">
-                        <p class="title">{{ new.title }}</p>
-                        <div class="f_pic"><a href="#" class="general_pic_hover scale"><img
-                                src="{{ new.image_url }}" alt=""/></a></div>
+                    <article class="block_topic_post" style="width: 600px">
+                        <p class="title" style="width: 600px;font-size: 20px;float: contour">{{ new.title }}</p>
+                        <div class="f_pic" style="width: 600px"><a href="#" class="general_pic_hover scale"><img
+                                src="{{ new.image_url }}" style="width: 550px"></a></div>
                         <p class="text">{{ new.content }}</p>
                         <div class="info">
                             <div class="date"><p>{{ new.news_date }}</p></div>
 
-                            <div class="r_part">
-                                <div class="category"><p><a href="#">Business</a></p></div>
+                            <div class="r_part" style="margin-right: 50px">
+                                <div class="category" ><p>浏览量：</p></div>
                                 <a href="#" class="views">{{ new.view_count }}</a>
                             </div>
                         </div>
                     </article>
-                    {% endfor %}
+
 
                 </div>
 
@@ -46,42 +35,17 @@
             </div>
 
             <div class="sidebar">
-                <div class="block_subscribes_sidebar">
-                    <div class="service">
-                        <a href="#" class="rss">
-                            <span class="num">11 234</span>
-                            <span class="people">Subscribers</span>
-                        </a>
-                    </div>
-                </div>
+{#                <div class="block_subscribes_sidebar">#}
+{#                    <div class="service">#}
+{#                        <a href="#" class="rss">#}
+{#                            <span class="num">11 234</span>#}
+{#                            <span class="people">Subscribers</span>#}
+{#                        </a>#}
+{#                    </div>#}
+{#                </div>#}
 
                 <div class="separator" style="height:31px;"></div>
 
-                <div class="block_popular_posts">
-                    <h4>热门新闻</h4>
-
-                    <div class="article">
-                        <div class="pic">
-                            <a href="#" class="w_hover">
-                                <img src="" alt=""/>
-                                <span></span>
-                            </a>
-                        </div>
-
-                        <div class="text">
-                            <p class="title"><a href="#">Packages and web page editors their default text.</a></p>
-                            <div class="date"><p>11 July, 2012</p></div>
-                            <div class="icons">
-                                <ul>
-                                    <li><a href="#" class="views">41</a></li>
-                                    <li><a href="#" class="comments">22</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="line_3"></div>
-
-                </div>
 
                 <div class="separator" style="height:31px;"></div>
 

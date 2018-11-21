@@ -16,8 +16,8 @@
                 <div class="fr">
                     <div class="block_top_menu">
                         <ul>
-                            {% if user %}
-                                <li class="current"><a href="#" class="open_popup">{{ user.username }}</a></li>
+                            {% if session['username'] %}
+                                <li class="current"><a href="#" class="open_popup">{{ session['username'] }}</a></li>
                                 <li class="current"><a href="{{ url_for('account.login_out') }}"
                                                        class="open_popup">退出</a></li>
                             {% else %}

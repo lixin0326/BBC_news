@@ -12,6 +12,7 @@ from flask_sqlalchemy import SQLAlchemy
 def init_ext(app):
     init_db(app)
     init_cors(app)
+    init_mail(app)
 
 
 # ========数据库配置============
@@ -35,13 +36,6 @@ def config_db(app):
     SESSION_TYPE = 'redis'
     # 配置session的过期时间 默认浏览器关闭就失效
     PERMANENT_SESSION_LIFETIME = datetime.timedelta(days=7)
-    MAIL_DEBUG = True
-    # smtp.163.com
-    MAIL_SERVER = 'smtp.163.com'
-    MAIL_PORT = 465
-    MAIL_USE_SSL = True
-    MAIL_USERNAME = 'L15737628530@163.com'
-    MAIL_PASSWORD = 'lixin123'
 
 
 # ========数据库配置ending========
@@ -54,6 +48,7 @@ cors = CORS()
 
 def init_cors(app):
     cors.init_app(app, resources={r"/api/*": {"origins": "*"}})
+
 
 # =========跨域请求ending=======
 
@@ -69,11 +64,11 @@ def init_cors(app):
 #     lm.init_app(app)
 
 
-# mail = Mail()
+mail = Mail()
 
-#
-# def init_mail(app):
-#     mail.init_app(app)
+
+def init_mail(app):
+    mail.init_app(app)
 
 
 # ========用户登录ending==============
