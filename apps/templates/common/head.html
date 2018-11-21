@@ -20,11 +20,12 @@
                                 <li class="current"><a href="#" class="open_popup">{{ session['username'] }}</a></li>
                                 <li class="current"><a href="{{ url_for('account.login_out') }}"
                                                        class="open_popup">退出</a></li>
+                                <li><a href="{{ url_for('personal.PersonCenter') }}">个人中心</a></li>
                             {% else %}
                                 <li class="current"><a href="#login" class="open_popup">登录</a></li>
                                 <li><a href="{{ url_for('account.register') }}">注册</a></li>
                             {% endif %}
-                            <li><a href="#">个人中心</a></li>
+
                         </ul>
                     </div>
 
@@ -36,7 +37,6 @@
                         </ul>
                     </div>
                 </div>
-
                 <div class="clearboth"></div>
             </div>
         </section>
@@ -45,7 +45,6 @@
             <div class="inner">
                 <div id="logo_top"><a href="/"><img src="/static/images/logo_top.png" alt="BusinessNews"
                                                     title="BusinessNews"/></a></div>
-
                 <div class="block_today_date">
                     <div class="num"><p id="num_top"></div>
                     <div class="other">
@@ -79,21 +78,16 @@
                 </div>
             </div>
         </section>
-
-        <section class="section_secondary_menu">
-
-        </section>
+        <section class="section_secondary_menu"></section>
     </div>
 </header>
-
 <div id="overlay"></div>
+{#登录弹框#}
 <div id="login" class="block_popup">
     <div class="popup">
         <a href="#" class="close">关闭</a>
-
         <div class="content">
             <div class="title"><p>登录这个网站</p></div>
-
             <div class="form">
                 <form action="{{ url_for('account.login') }}" method="post">
                     <div class="column">
@@ -102,7 +96,6 @@
                             <input type="text" name="username">
                         </div>
                     </div>
-
                     <div class="column">
                         <p class="label">密码 : </p>
                         <div class="field">
@@ -129,7 +122,6 @@
                             登录
                         </button>
                     </div>
-
                     <div class="clearboth"></div>
                 </form>
             </div>

@@ -12,26 +12,24 @@
                     </div>
                 </div>
                 <div class="separator" style="height:17px;"></div>
-
                 <div class="block_home_slider">
                     <!-- 轮播图 -->
                     <div id="home_slider" class="flexslider">
                         <ul class="slides">
-
                             <!-- 模板-->
                             {% for banner in banners_list %}
                                 <li>
                                     <div class="slide">
-                                        <img src="{{ banner.image_url }}" alt=""/>
-                                        <div class="caption">
-                                        </div>
+                                        <a href="http://127.0.0.1:8000/detail/{{ banner.new_id }}">
+                                            <img src="{{ banner.image_url }}" alt=""/>
+                                        </a>
+                                        <div class="caption"></div>
                                     </div>
                                 </li>
                             {% endfor %}
 
                         </ul>
                     </div>
-
                     <script type="text/javascript">
                         $(function () {
                             $('#home_slider').flexslider({
@@ -39,19 +37,17 @@
                                 controlNav: true,
                                 directionNav: true,
                                 animationLoop: true,
-                                slideshow: false,
-                                useCSS: false
+                                slideshow: true,
+                                useCSS: false,
+                                slideshowSpeed: 2000,
+                                animationDuration: 1100,
                             });
-
                         });
                     </script>
                 </div>
-
                 <div class="line_2" style="margin:34px 0px 28px;"></div>
-
                 <!-- 轮播图下 左边新闻-->
                 <div class="block_home_col_1">
-
                     {#            模板  有三条新闻#}
                     {% for new in news_left %}
                         <div class="block_home_post">
@@ -135,7 +131,7 @@
             <div class="sidebar">
 
                 <div class="separator" style="height:31px;"></div>
-
+                {#  热门新闻#}
                 <div class="block_popular_posts">
                     <h4>热门新闻</h4>
                     {% for hot_new in hot_news %}
@@ -165,7 +161,7 @@
                 <div class="separator" style="height:31px;"></div>
 
                 <div class="separator" style="height:31px;"></div>
-
+                {#   日历#}
                 <div class="block_calendar">
                     <h4>日历</h4>
 
@@ -195,16 +191,9 @@
                 </div>
 
                 <div class="separator" style="height:31px;"></div>
-
-
                 <div class="separator" style="height:31px;"></div>
-
-
                 <div class="separator" style="height:31px;"></div>
-
-
             </div>
-
             <div class="clearboth"></div>
         </div>
     </div>
