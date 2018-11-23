@@ -24,9 +24,11 @@
                         <article class="block_topic_post">
                             <p class="title"><a
                                     href="http://127.0.0.1:8000/detail/{{ new.new_id }}">{{ new.title }}</a></p>
-                            <div class="f_pic"><a href="http://127.0.0.1:8000/detail/{{ new.new_id }}"
-                                                  class="general_pic_hover scale"><img
-                                    src="{{ new.image_url }}" alt=""/></a></div>
+                            <div class="f_pic">
+                                <a href="http://127.0.0.1:8000/detail/{{ new.new_id }}" class="general_pic_hover scale">
+                                    <img src="{{ new.image_url }}" style="width: 256px;height: 150px;">
+                                </a>
+                            </div>
 
                             <div class="info">
                                 <div class="date"><p>{{ new.news_date }}</p></div>
@@ -48,21 +50,24 @@
                     <div class="pages">
                         <ul class="pagination">
                             {% if dets.has_prev %}
-                                <li><a href="http://127.0.0.1:8000/cart/{{ classify.c_id }}/{{ dets.prev_num }}">上一页</a></li>
+                                <li><a href="http://127.0.0.1:8000/cart/{{ classify.c_id }}/{{ dets.prev_num }}">上一页</a>
+                                </li>
 
                             {% else %}
                                 <li class="disabled"><a href="#">上一页</a></li>
                             {% endif %}
                             {% for det in dets.iter_pages(left_edge=3,left_current=2,right_edge=2,right_current=3) %}
                                 {% if det %}
-                                    <li><a href="http://127.0.0.1:8000/cart/{{ classify.c_id }}/{{ det }}">{{ det }}</a></li>
+                                    <li><a href="http://127.0.0.1:8000/cart/{{ classify.c_id }}/{{ det }}">{{ det }}</a>
+                                    </li>
                                 {% else %}
                                     <li class="disabled"><a>...</a></li>
 
                                 {% endif %}
                             {% endfor %}
                             {% if dets.has_next %}
-                                <li><a href="http://127.0.0.1:8000/cart/{{ classify.c_id }}/{{ dets.next_num }}">下一页</a></li>
+                                <li><a href="http://127.0.0.1:8000/cart/{{ classify.c_id }}/{{ dets.next_num }}">下一页</a>
+                                </li>
                             {% else %}
                                 <li class="disabled"><a href="#">下一页</a></li>
                             {% endif %}
@@ -78,15 +83,70 @@
                 <div class="block_subscribes_sidebar">
                     <div class="service" style="height: 80px">
                         <span class="num" style="height: 40px">浏览量：{{ classify.view_count }}</span>
-
-                            <button class="num">订阅</button>
+                        {% if user and sub.is_sub == 1 %}
+                            <button class="btn btn-danger" type="button" id="sub_no" style="width: 265px;height: 45px"
+                                    cate_id='{{ classify.c_id }}'>取消订阅
+                            </button>
+                        {% else %}
+                            <button class="btn btn-danger" type="button" id="sub_yes" style="width: 265px;height: 45px"
+                                    cate_id='{{ classify.c_id }}'>订阅
+                            </button>
+                        {% endif %}
 
                     </div>
+                    <script type="text/javascript">
+                        var sub_no_url = 'http://127.0.0.1:8000{{ url_for('home.sub_no') }}';
+                        var sub_yes_url = 'http://127.0.0.1:8000{{ url_for('home.sub_yes') }}';
+
+                        $(function () {
+                            let data = {};
+                            data = {
+                                cate_id: {{ classify.c_id }},
+                            };
+                            $("#sub_no").click(function () {
+
+                                $.get(sub_no_url, data, function (result) {
+                                    if (result.status === 200) {
+                                        location.reload();
+                                    }
+                                });
+                            });
+                            $("#sub_yes").click(function () {
+                                $.get(sub_yes_url, data, function (result) {
+                                    if (result.status === 200) {
+                                        location.reload();
+                                    }
+                                });
+                            });
+                        });
+                    </script>
+
                 </div>
-
                 <div class="separator" style="height:31px;"></div>
-
                 <div class="block_popular_posts">
+                    <h4>相关新闻</h4>
+                    {% for hot_new in hot_news %}
+                        <div class="article">
+                            <div class="pic">
+                                <a href="http://127.0.0.1:8000/detail/{{ hot_new.new_id }}" class="w_hover">
+                                    <img src="{{ hot_new.image_url }}" alt="" style="width: 48px;height: 48px"/>
+                                    <span></span>
+                                </a>
+                            </div>
+                            <div class="text">
+                                <p class="title">
+                                    <a href="http://127.0.0.1:8000/detail/{{ hot_new.new_id }}">{{ hot_new.title }}</a>
+                                </p>
+                                <div class="date"><p>{{ hot_new.news_date }}</p></div>
+                                <div class="icons">
+                                    <ul>
+                                        <li><a href="#" class="views">{{ hot_new.view_count }}</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="line_3"></div>
+                    {% endfor %}
                 </div>
 
                 <div class="separator" style="height:31px;"></div>
@@ -118,12 +178,15 @@
                     <div class="line_2"></div>
                 </div>
 
-                <div class="separator" style="height:31px;"></div>
-
-
             </div>
 
-            <div class="clearboth"></div>
+
+            <div class="separator" style="height:31px;"></div>
+
+
         </div>
+
+        <div class="clearboth"></div>
     </div>
+</div>
 </div>

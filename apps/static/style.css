@@ -351,7 +351,7 @@ nav.secondary_menu > ul > li:first-child > a {padding-left:0px;}
 
 .left_sidebar .general_content {background:url(images/line_content.gif) repeat-y 320px 0px;}
 .left_sidebar .main_content {width:620px; float:right;}
-.left_sidebar .sidebar {width:300px; float:left;}
+.left_sidebar .sidebar {width:600px; float:left;}
 
 .block_home_col_1 {width:300px; float:left;}
 .block_home_col_2 {width:300px; float:right;}

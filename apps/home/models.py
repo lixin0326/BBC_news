@@ -1,5 +1,7 @@
 import datetime
 
+from jieba.analyse import ChineseAnalyzer
+
 from apps.db_ext import db
 
 
@@ -51,6 +53,9 @@ class News(db.Model):
     is_hot = db.Column(db.Integer, default=0)
     # 关联分类表,所属类别
     classify_id = db.Column(db.Integer, db.ForeignKey(Classify.c_id))
+    # 全文检索配置
+    __searchable__ = ['content', 'title']
+    __analyzer__ = ChineseAnalyzer()
 
 
 # 　订阅表

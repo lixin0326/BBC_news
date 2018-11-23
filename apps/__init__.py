@@ -4,6 +4,7 @@ from apps.account.views import account
 from apps.db_ext import init_ext
 from apps.home.views import home
 from apps.personal.views import personal
+import flask_whooshalchemyplus
 
 
 def create_app():
@@ -21,6 +22,8 @@ def create_app():
     app.debug = True  # 注意产品上线的时候要管了
     register_blue(app)  # 注册蓝图对象
     init_ext(app)  # 数据库相关 拓展程序
+    # 全文检索
+    flask_whooshalchemyplus.init_app(app)
     return app
 
 

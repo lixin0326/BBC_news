@@ -1,9 +1,8 @@
 import datetime
-import uuid
 from functools import wraps
-from flask import Blueprint, request, render_template, session, redirect, url_for
+from io import BytesIO
+from flask import Blueprint, request, render_template, session, redirect, url_for, make_response
 from flask_mail import Message
-
 from apps.db_ext import db, mail
 from apps.home.models import User
 
@@ -22,6 +21,21 @@ def login_required(func):
     return __wrapper
 
 
+# 验证码生成器
+@account.route('/create_code/')
+def create_code():
+    from account.create_img_code import create_validate_code
+    code_img, strs = create_validate_code()
+    buf = BytesIO()
+    code_img.save(buf, 'jpeg')
+    buf_str = buf.getvalue()
+    response = make_response(buf_str)
+    response.headers['Content-Type'] = 'image/jpeg'
+    session['img'] = strs.upper()
+    return response
+
+
+# 普通用户登录
 @account.route('/', methods=['GET', 'POST'])
 def login():
     if request.method == 'GET':
@@ -29,24 +43,50 @@ def login():
     else:
         username = request.form['username']
         password = request.form['password']
+        # 验证码转换大写
+        yzm = request.form['yzm'].upper()
         user = User.query.filter_by(username=username, password=password).first()
         if user:
+            if session['img'] != yzm:
+                return "验证码错误!"
             if user.is_active == 0:
                 return "该用户未被激活!"
             session['username'] = username
-
             return redirect('/')
         else:
             return '用户名或密码错误!'
 
 
+# 管理员登录
+@account.route('/admin_login/', methods=['GET', 'POST'])
+def admin_login():
+    if request.method == 'GET':
+        return render_template('home/admin_login.html')
+    else:
+        username = request.form['username']
+        password = request.form['password']
+        user = User.query.filter(User.username == username,
+                                 User.password == password,
+                                 User.is_superuser == 1).first()
+        if user:
+            session['username'] = username
+            return redirect('/')
+        else:
+            return '管理员账户或密码错误!'
+
+
+# 注册
 @account.route('/register/', methods=['GET', 'POST'])
 def register():
     if request.method == 'GET':
         return render_template('home/registration.html')
     else:
         username = request.form['username']
+        if len(username) <= 8:
+            return "用户名长度不符合规范"
         password = request.form['password']
+        if len(password) < 6:
+            return "密码长度不够!"
         confirm_pwd = request.form['confirm_pwd']
         if password != confirm_pwd:
             return '两次密码不一致!'
@@ -77,12 +117,14 @@ def register():
         return redirect('/')
 
 
+# 　登出
 @account.route('/login_out/')
 def login_out():
     session.clear()
     return redirect('/')
 
 
+# 邮箱激活
 @account.route('/active_user/')
 def ActiveUser():
     username = request.args.get('username')

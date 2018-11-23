@@ -27,7 +27,6 @@
                                     </div>
                                 </li>
                             {% endfor %}
-
                         </ul>
                     </div>
                     <script type="text/javascript">
@@ -104,9 +103,11 @@
                         <article class="block_topic_post">
                             <p class="title"><a href="http://127.0.0.1:8000/detail/{{ new.new_id }}">{{ new.title }}</a>
                             </p>
-                            <div class="f_pic"><a href="http://127.0.0.1:8000/detail/{{ new.new_id }}"
-                                                  class="general_pic_hover scale"><img
-                                    src="{{ new.image_url }}" alt=""/></a></div>
+                            <div class="f_pic">
+                                <a href="http://127.0.0.1:8000/detail/{{ new.new_id }}" class="general_pic_hover scale">
+                                    <img src="{{ new.image_url }}" style="width: 256px;height: 150px;margin-left: -17px">
+                                </a>
+                            </div>
                             <div class="info">
                                 <div class="date"><p>{{ new.news_date }}</p></div>
 
@@ -120,12 +121,8 @@
                 </div>
 
                 <div class="line_3" style="margin:20px 0px 24px;"></div>
-
-
                 <div class="line_2" style="margin:24px 0px 35px;"></div>
-
                 <div class="line_2" style="margin:20px 0px 0px;"></div>
-
             </div>
 
             <div class="sidebar">
